@@ -22,7 +22,7 @@ public class Role {
   @OneToMany(mappedBy = "role")
   private List<Collaborator> collaborators = new ArrayList<>();
 
-  @ManyToMany(mappedBy = "rolesNeeded")
+  @ManyToMany(mappedBy = "roles")
   private List<Project> projects = new ArrayList<>();
 
   public Role() {

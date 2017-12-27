@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
@@ -24,10 +26,20 @@ public class Project {
   @NotNull
   private String status;
 
-  @ManyToMany(mappedBy = "projects")
-  private List<Role> rolesNeeded = new ArrayList<>();
+  @ManyToMany
+  @JoinTable(
+      name = "Project_Role",
+      joinColumns = @JoinColumn(name = "project_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id")
+  )
+  private List<Role> roles = new ArrayList<>();
 
-  @ManyToMany(mappedBy = "projects")
+  @ManyToMany
+  @JoinTable(
+      name = "Project_Collaborator",
+      joinColumns = @JoinColumn(name = "project_id"),
+      inverseJoinColumns = @JoinColumn(name = "collaborator_id")
+  )
   private List<Collaborator> collaborators = new ArrayList<>();
 
   public Project() {
@@ -65,12 +77,12 @@ public class Project {
     this.status = status;
   }
 
-  public List<Role> getRolesNeeded() {
-    return rolesNeeded;
+  public List<Role> getRoles() {
+    return roles;
   }
 
-  public void setRolesNeeded(List<Role> rolesNeeded) {
-    this.rolesNeeded = rolesNeeded;
+  public void setRoles(List<Role> roles) {
+    this.roles = roles;
   }
 
   public List<Collaborator> getCollaborators() {
