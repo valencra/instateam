@@ -4,7 +4,7 @@
     <body>
         <header th:replace="layout :: header('Role', '/roles/add')"></header>
         <nav th:replace="layout :: nav"></nav>
-        <div th:replace="layout :: flash"></div>
+
         <section>
             <div class="container wrapper">
                 <form>
@@ -14,10 +14,7 @@
                             <li th:each="role : ${roles}"><span class="primary" th:text="${role.name}">Role Name</span></li>
                         </ul>
                     </div>
-                    <div class="actions add-new-role">
-                        <input type="text" placeholder="New Role...">
-                        <a class="button" href="#">Add</a>
-                    </div>
+                    <br>
                 </form>
             </div>
         </section>
