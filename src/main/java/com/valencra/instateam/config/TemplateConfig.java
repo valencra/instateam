@@ -12,6 +12,7 @@ public class TemplateConfig {
     public SpringResourceTemplateResolver templateResolver() {
         final SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setCacheable(false);
+        templateResolver.setTemplateMode("LEGACYHTML5");
         templateResolver.setPrefix("classpath:/templates/");
         templateResolver.setSuffix(".html");
         return templateResolver;
