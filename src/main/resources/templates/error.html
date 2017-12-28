@@ -4,7 +4,13 @@
 <head th:replace="layout :: head('error')"></head>
 
 <body>
-    <header th:replace="layout :: header"></header>
+    <header>
+        <div class="container">
+            <div class="site-header">
+                <a class="logo" th:href="@{/}">InstaTeam</a>
+            </div>
+        </div>
+    </header>
 
     <nav th:replace="layout :: nav"></nav>
 

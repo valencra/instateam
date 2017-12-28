@@ -26,7 +26,7 @@ public class RoleController {
     if(!model.containsAttribute("role")) {
       model.addAttribute("role", new Role());
     }
-    return "role/roles";
+    return "role/index";
   }
 
   @PostMapping(value = "/roles")
