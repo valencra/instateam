@@ -439,18 +439,17 @@ form .add-new-collaborator .button {
    Form Validation
    ========================================================================== */
 
-.error input {
-    border-width: 2px;
-    border-color: #ac4343;
-    border-bottom: none;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+.error-input {
+    border-color: #ac4343 !important;
 }
 
-.error .error-message {
+
+.error-message {
     border: 2px solid #ac4343;
     border-radius: 0 0 6px 6px;
     background-color: #ac4343;
     color: rgb(254,251,251);
     padding: 10px;
+    margin-top: -32px;
+    margin-right: 2px;
 }

@@ -18,8 +18,8 @@ public class Role {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotNull
-  @NotBlank
+  @NotNull(message = "Role name must not be null")
+  @NotBlank(message = "Role name must not be blank")
   private String name;
 
   @OneToMany(mappedBy = "role")
