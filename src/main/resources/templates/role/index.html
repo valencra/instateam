@@ -3,6 +3,7 @@
     <head th:replace="layout :: head('roles')"></head>
     <body>
         <header th:replace="layout :: header('Role', '/roles/add')"></header>
+        <div th:replace="layout :: flash"></div>
         <nav th:replace="layout :: nav"></nav>
 
         <section>
@@ -18,5 +19,7 @@
                 </form>
             </div>
         </section>
+
+        <div th:replace="layout :: scripts"></div>
     </body>
 </html>
