@@ -1,5 +1,7 @@
 package com.valencra.instateam.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,6 +19,7 @@ public class Role {
   private Long id;
 
   @NotNull
+  @NotBlank
   private String name;
 
   @OneToMany(mappedBy = "role")

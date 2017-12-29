@@ -43,9 +43,9 @@ public class RoleController {
   @PostMapping(value = "/roles")
   public String addNewRole(@Valid Role role, BindingResult result, RedirectAttributes redirectAttributes) {
     if(result.hasErrors()) {
-      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.category",result);
+      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.role", result);
       redirectAttributes.addFlashAttribute("role", role);
-      return "redirect:/roles";
+      return "redirect:/roles/add";
     }
     roleService.save(role);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role successfully added!", FlashMessage.Status.SUCCESS));
