@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <label for="collaborator_role">Collaborator Role</label>
-                    <select th:disabled="${method} == 'delete'" th:class="${#fields.hasErrors('role')} ? 'error-input' : ''" name="collaborator_role" th:field="*{role.id}">
+                    <select th:readonly="${method} == 'delete'" th:class="${#fields.hasErrors('role')} ? 'error-input' : ''" name="collaborator_role" th:field="*{role.id}">
                         <option value="" disabled selected>Collaborator Role</option>
                         <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}">Collaborator Role</option>
                     </select>
