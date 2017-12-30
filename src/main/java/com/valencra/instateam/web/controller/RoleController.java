@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,6 +84,34 @@ public class RoleController {
     }
     roleService.save(role);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role successfully edited!", FlashMessage.Status.SUCCESS));
+    return "redirect:/roles";
+  }
+
+  // Delete existing role form
+  @GetMapping("/roles/{id}/delete")
+  public String deleteRoleForm(@PathVariable Long id, Model model) {
+    // If no role object exists, get role with given id
+    if(!model.containsAttribute("role")) {
+      model.addAttribute("role", roleService.findById(id));
+    }
+    model.addAttribute("action", String.format("/roles/%d", id));
+    model.addAttribute("method","delete");
+    model.addAttribute("heading","Delete Role");
+    model.addAttribute("submit","Delete");
+    return "role/form";
+  }
+
+  // Delete existing role
+  @DeleteMapping(value = "/roles/{id}")
+  public String deleteExistingRole(@Valid Role role, BindingResult result, RedirectAttributes redirectAttributes) {
+    // If result has errors, add results and current role object to the model, then redirect to form
+    if(result.hasErrors()) {
+      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.role", result);
+      redirectAttributes.addFlashAttribute("role", role);
+      return "redirect:/roles/{id}/delete";
+    }
+    roleService.delete(role);
+    redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role successfully deleted!", FlashMessage.Status.SUCCESS));
     return "redirect:/roles";
   }
 }

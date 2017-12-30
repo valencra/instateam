@@ -15,6 +15,9 @@
                             <li th:each="role : ${roles}">
                                 <div class="role">
                                     <span class="primary" th:text="${role.name}">Role Name</span>
+                                    <a class="delete" th:href="@{'/roles/' + ${role.id} + '/delete'}">
+                                        <i class="material-icons">delete</i>
+                                    </a>
                                     <a class="edit" th:href="@{'/roles/' + ${role.id} + '/edit'}">
                                         <i class="material-icons">create</i>
                                     </a>

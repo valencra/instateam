@@ -16,6 +16,8 @@
         <div class="container wrapper">
             <form th:action="@{${action}}" th:method="${method}" th:object="${role}">
                 <input type="hidden" th:field="*{id}"/>
+                <h2 th:text="${heading}">New Role</h2>
+                <br><br>
                 <div>
                     <label for="role_name"> Role Name:</label>
                     <input th:class="${#fields.hasErrors('name')} ? 'error-input' : ''" type="text" name="role_name" th:field="*{name}" placeholder="Role Name"/>

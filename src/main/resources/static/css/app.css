@@ -220,8 +220,17 @@ strong {
 
 .edit {
   float: right;
+  margin-right: 20px;
 }
 .edit i {
+  color: #747372;
+}
+
+.delete {
+  float: right;
+  margin-right: 0px;
+}
+.delete i {
   color: #747372;
 }
 
