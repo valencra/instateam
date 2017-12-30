@@ -15,7 +15,7 @@
                             <li th:each="collaborator : ${collaborators}">
                                 <div class="collaborator">
                                     <a class="field" th:href="@{'/collaborators/' + ${collaborator.id}}">
-                                        <h2 class="primary" th:text="${collaborator.name}">Collaborator Name</h2>
+                                        <h3 class="primary" th:text="${collaborator.name}">Collaborator Name</h3>
                                         <p th:text="${collaborator.role.name}">Collaborator Role</p>
                                     </a>
                                     <a class="delete" th:href="@{'/collaborators/' + ${collaborator.id} + '/delete'}">
