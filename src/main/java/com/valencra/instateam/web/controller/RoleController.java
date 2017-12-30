@@ -31,6 +31,13 @@ public class RoleController {
     return "role/index";
   }
 
+  @GetMapping("/roles/{id}")
+  public String getRoleById(@PathVariable Long id, Model model) {
+    Role role = roleService.findById(id);
+    model.addAttribute("role", role);
+    return "role/details";
+  }
+
   // Add new role form
   @GetMapping("/roles/add")
   public String newRoleForm(Model model) {
