@@ -221,6 +221,17 @@ strong {
   color: #747372;
 }
 
+.collaborator {
+  position: relative;
+  padding: 20px 0px 20px 0px;
+}
+.collaborator .field {
+  float: left;
+}
+.collaborator .field span {
+  color: #747372;
+}
+
 .edit {
   float: right;
   margin-right: 20px;
