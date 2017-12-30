@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -66,6 +67,35 @@ public class CollaboratorController {
     }
     collaboratorService.save(collaborator);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator successfully added!", FlashMessage.Status.SUCCESS));
+    return "redirect:/collaborators";
+  }
+
+  // Edit existing collaborator form
+  @GetMapping("/collaborators/{id}/edit")
+  public String editCollaboratorForm(@PathVariable Long id, Model model) {
+    // If no collaborator object exists, get collaborator with given id
+    if(!model.containsAttribute("collaborator")) {
+      model.addAttribute("collaborator", collaboratorService.findById(id));
+    }
+    model.addAttribute("roles", roleService.findAll());
+    model.addAttribute("action", String.format("/collaborators/%d", id));
+    model.addAttribute("method","put");
+    model.addAttribute("heading","Edit Collaborator");
+    model.addAttribute("submit","Update");
+    return "collaborator/form";
+  }
+
+  // Edit existing collaborator
+  @PutMapping(value = "/collaborators/{id}")
+  public String editExistingCollaborator(@Valid Collaborator collaborator, BindingResult result, RedirectAttributes redirectAttributes) {
+    // If result has errors, add results and current collaborator object to the model, then redirect to form
+    if(result.hasErrors()) {
+      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.collaborator", result);
+      redirectAttributes.addFlashAttribute("collaborator", collaborator);
+      return "redirect:/collaborator/{id}/edit";
+    }
+    collaboratorService.save(collaborator);
+    redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator successfully edited!", FlashMessage.Status.SUCCESS));
     return "redirect:/collaborators";
   }
 }
