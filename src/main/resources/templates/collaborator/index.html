@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="layout :: head('Collaborators')"></head>
+    <body>
+        <header th:replace="layout :: header('Collaborator', '/collaborators/add')"></header>
+        <div th:replace="layout :: flash"></div>
+        <nav th:replace="layout :: nav"></nav>
+
+        <section>
+            <div class="container wrapper">
+                <form>
+                    <h2>Manage Collaborators</h2>
+                    <div>
+                        <ul class="checkbox-list">
+                            <li th:each="collaborator : ${collaborators}">
+                                <div class="collaborator">
+                                    <a class="field" th:href="@{'/collaborators/' + ${collaborator.id}}">
+                                        <span class="primary" th:text="${collaborator.name}">Collaborator Name</span>
+                                    </a>
+                                    <a class="delete" th:href="@{'/collaborators/' + ${collaborator.id} + '/delete'}">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                    <a class="edit" th:href="@{'/collaborators/' + ${collaborator.id} + '/edit'}">
+                                        <i class="material-icons">create</i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </section>
+
+        <div th:replace="layout :: scripts"></div>
+    </body>
+</html>
