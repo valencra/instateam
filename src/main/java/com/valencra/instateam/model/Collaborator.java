@@ -1,5 +1,7 @@
 package com.valencra.instateam.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,10 +19,11 @@ public class Collaborator {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotNull
+  @NotNull(message = "Collaborator name must not be null")
+  @NotEmpty(message = "Collaborator name must not be blank")
   private String name;
 
-  @NotNull
+  @NotNull(message = "Collaborator role must not be null")
   @ManyToOne
   @JoinColumn(name="collaborator_id")
   private Role role;
