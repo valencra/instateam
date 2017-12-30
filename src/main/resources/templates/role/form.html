@@ -19,7 +19,7 @@
                 <h2 th:text="${heading}">New Role</h2>
                 <br><br>
                 <div>
-                    <label for="role_name"> Role Name:</label>
+                    <label for="role_name">Role Name</label>
                     <input th:class="${#fields.hasErrors('name')} ? 'error-input' : ''" type="text" name="role_name" th:field="*{name}" placeholder="Role Name"/>
                     <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 </div>

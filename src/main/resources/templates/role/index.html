@@ -14,7 +14,9 @@
                         <ul class="checkbox-list">
                             <li th:each="role : ${roles}">
                                 <div class="role">
-                                    <span class="primary" th:text="${role.name}">Role Name</span>
+                                    <a class="field" th:href="@{'/roles/' + ${role.id}}">
+                                        <span class="primary" th:text="${role.name}">Role Name</span>
+                                    </a>
                                     <a class="delete" th:href="@{'/roles/' + ${role.id} + '/delete'}">
                                         <i class="material-icons">delete</i>
                                     </a>

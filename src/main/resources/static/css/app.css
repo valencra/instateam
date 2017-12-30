@@ -214,8 +214,11 @@ strong {
   position: relative;
   padding: 20px 0px 20px 0px;
 }
-.role span {
+.role .field {
   float: left;
+}
+.role .field span {
+  color: #747372;
 }
 
 .edit {
