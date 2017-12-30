@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layout :: head('Collaborators')"></head>
+<body>
+<header>
+    <div class="container">
+        <div class="site-header">
+            <a class="logo" th:href="@{/}">InstaTeam</a>
+        </div>
+    </div>
+</header>
+<div th:replace="layout :: flash"></div>
+<nav th:replace="layout :: nav"></nav>
+
+<section>
+    <div class="container wrapper">
+        <form th:object="${collaborator}">
+            <input type="hidden" th:field="*{id}"/>
+            <h2>View Collaborator</h2>
+            <br><br>
+            <div>
+                <label for="collaborator_name">Collaborator Name</label>
+                <input readonly type="text" name="collaborator_name" th:field="*{name}" placeholder="Collaborator Name"/>
+            </div>
+            <div>
+                <label for="collaborator_role">Collaborator Role</label>
+                <input readonly type="text" name="collaborator_role" th:field="*{role.name}" placeholder="Collaborator Role"/>
+            </div>
+            <div class="actions">
+                <a th:href="@{/collaborators}" class="button">Back To Collaborators</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>

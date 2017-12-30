@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +30,14 @@ public class CollaboratorController {
     List<Collaborator> collaborators = collaboratorService.findAll();
     model.addAttribute("collaborators", collaborators);
     return "collaborator/index";
+  }
+
+  // View collaborator details
+  @GetMapping("/collaborators/{id}")
+  public String getCollaboratorById(@PathVariable Long id, Model model) {
+    Collaborator collaborator = collaboratorService.findById(id);
+    model.addAttribute("collaborator", collaborator);
+    return "collaborator/details";
   }
 
   // Add new collaborator form

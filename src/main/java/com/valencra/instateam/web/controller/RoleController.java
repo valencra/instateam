@@ -31,6 +31,7 @@ public class RoleController {
     return "role/index";
   }
 
+  // View role details
   @GetMapping("/roles/{id}")
   public String getRoleById(@PathVariable Long id, Model model) {
     Role role = roleService.findById(id);
