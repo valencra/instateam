@@ -14,7 +14,7 @@
 
     <section>
         <div class="container wrapper">
-            <form th:action="@{${action}}" method="post" th:object="${role}">
+            <form th:action="@{${action}}" th:method="${method}" th:object="${role}">
                 <input type="hidden" th:field="*{id}"/>
                 <div>
                     <label for="role_name"> Role Name:</label>

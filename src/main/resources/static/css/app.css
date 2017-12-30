@@ -208,6 +208,23 @@ strong {
 @media only screen and (max-width: 700px) {
     .actions {border-radius: 0;}
 }
+
+
+.role {
+  position: relative;
+  padding: 20px 0px 20px 0px;
+}
+.role span {
+  float: left;
+}
+
+.edit {
+  float: right;
+}
+.edit i {
+  color: #747372;
+}
+
 .project {
 	border-bottom: 1px solid #e1e0e0;
 	position: relative;
@@ -433,6 +450,12 @@ form .add-new-collaborator .button {
 .flash.failure {
     background-color: #ac4343;
     color: #f2e2e2;
+}
+
+.flash i {
+  vertical-align: middle;
+  display: inline-block;
+  cursor: pointer;
 }
 
 /* ==========================================================================

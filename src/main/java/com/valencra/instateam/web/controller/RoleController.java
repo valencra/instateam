@@ -38,6 +38,7 @@ public class RoleController {
       model.addAttribute("role", new Role());
     }
     model.addAttribute("action","/roles");
+    model.addAttribute("method","post");
     model.addAttribute("heading","New Role");
     model.addAttribute("submit","Add");
     return "role/form";
@@ -65,6 +66,7 @@ public class RoleController {
       model.addAttribute("role", roleService.findById(id));
     }
     model.addAttribute("action", String.format("/roles/%d", id));
+    model.addAttribute("method","put");
     model.addAttribute("heading","Edit Role");
     model.addAttribute("submit","Update");
     return "role/form";
