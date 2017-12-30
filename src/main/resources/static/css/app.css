@@ -480,11 +480,8 @@ form .add-new-collaborator .button {
 
 
 .error-message {
-    border: 2px solid #ac4343;
-    border-radius: 0 0 6px 6px;
-    background-color: #ac4343;
-    color: rgb(254,251,251);
-    padding: 10px;
+    color: #ac4343;
+    padding: 10px 0px 10px 0px;
     margin-top: -32px;
     margin-right: 2px;
 }
