@@ -27,7 +27,7 @@ public class ProjectController {
   public String getProjects(Model model) {
     List<Project> projects = projectService.findAll();
     model.addAttribute("projects", projects);
-    return "project/index";
+    return "index";
   }
 
 }
