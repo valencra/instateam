@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="layout :: head('Projects')"></head>
+    <body>
+        <header th:replace="layout :: header('Project', '/projects/add')"></header>
+        <div th:replace="layout :: flash"></div>
+        <nav th:replace="layout :: nav"></nav>
+
+        <section>
+            <div class="container wrapper">
+                <div class="project-list">
+                    <div class="project" th:each="project : ${projects}">
+                        <h2><a th:href="@{'/projects/' + ${project.id}}" th:text="${project.name}">Project Name</a></h2>
+                        <p th:text="${project.description}">Design and build a custom website</p>
+                        <span class="tag" th:classappend="${project.status == 'active'} ? 'active' : ''" th:text="${project.status}">Active</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div th:replace="layout :: scripts"></div>
+    </body>
+</html>
