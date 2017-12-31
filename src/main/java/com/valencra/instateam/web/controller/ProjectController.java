@@ -22,6 +22,7 @@ public class ProjectController {
   @Autowired
   private RoleService roleService;
 
+  // Index of projects
   @GetMapping("/")
   public String getProjects(Model model) {
     List<Project> projects = projectService.findAll();
