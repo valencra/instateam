@@ -3,7 +3,7 @@ package com.valencra.instateam.web;
 public enum ProjectStatus {
   ACTIVE("Active"),
   ARCHIVED("Archived"),
-  NOT_STARTED("Not Started")
+  NOT_STARTED("Not Started");
 
   private String status;
 
@@ -12,6 +12,6 @@ public enum ProjectStatus {
   }
 
   public String getStatus() {
-    return status
+    return status;
   }
 }
