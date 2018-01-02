@@ -13,9 +13,9 @@
                         <h2><a th:href="@{'/projects/' + ${project.id}}" th:text="${project.name}">Project Name</a></h2>
                         <p th:text="${project.description}">Design and build a custom website</p>
                         <th:block th:switch="${project.status}">
-                            <span th:case="'Active'" class="tag active">Active</span>
-                            <span th:case="'Archived'" class="tag archived">Archived</span>
-                            <span th:case="'Not Started'" class="tag">Not Started</span>
+                            <span th:case="ACTIVE" class="tag active">Active</span>
+                            <span th:case="ARCHIVED" class="tag archived">Archived</span>
+                            <span th:case="NOT_STARTED" class="tag">Not Started</span>
                         </th:block>
                     </div>
                 </div>
