@@ -1,5 +1,7 @@
 package com.valencra.instateam.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,13 +19,15 @@ public class Project {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotNull
+  @NotNull(message = "Project name must not be blank")
+  @NotEmpty(message = "Project name must not be empty")
   private String name;
 
-  @NotNull
+  @NotNull(message = "Project description must not be blank")
+  @NotEmpty(message = "Project description must not be empty")
   private String description;
 
-  @NotNull
+  @NotNull(message = "Project status must not be blank")
   private String status;
 
   @ManyToMany
