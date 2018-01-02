@@ -5,6 +5,7 @@ import com.valencra.instateam.service.CollaboratorService;
 import com.valencra.instateam.service.ProjectService;
 import com.valencra.instateam.service.RoleService;
 import com.valencra.instateam.web.FlashMessage;
+import com.valencra.instateam.web.ProjectStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +43,7 @@ public class ProjectController {
     if(!model.containsAttribute("project")) {
       model.addAttribute("project", new Project());
     }
+    model.addAttribute("statuses", ProjectStatus.values());
     model.addAttribute("roles", roleService.findAll());
     model.addAttribute("action","/projects");
     model.addAttribute("method","post");

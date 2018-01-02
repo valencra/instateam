@@ -5,13 +5,13 @@ public enum ProjectStatus {
   ARCHIVED("Archived"),
   NOT_STARTED("Not Started");
 
-  private String status;
+  private String name;
 
-  ProjectStatus(String status) {
-    this.status = status;
+  ProjectStatus(String name) {
+    this.name = name;
   }
 
-  public String getStatus() {
-    return status;
+  public String getName() {
+    return name;
   }
 }
