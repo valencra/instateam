@@ -15,7 +15,7 @@
                         <th:block th:switch="${project.status}">
                             <span th:case="Active" class="tag active">Active</span>
                             <span th:case="Archived" class="tag archived">Archived</span>
-                            <span th:case="Not Started'" class="tag">Not Started</span>
+                            <span th:case="'Not Started'" class="tag archived">Not Started</span>
                         </th:block>
                     </div>
                 </div>

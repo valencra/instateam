@@ -93,7 +93,7 @@ public class CollaboratorController {
     if(result.hasErrors()) {
       redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.collaborator", result);
       redirectAttributes.addFlashAttribute("collaborator", collaborator);
-      return "redirect:/collaborator/{id}/edit";
+      return "redirect:/collaborators/{id}/edit";
     }
     collaboratorService.save(collaborator);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator successfully edited!", FlashMessage.Status.SUCCESS));

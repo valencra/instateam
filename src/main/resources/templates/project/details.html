@@ -14,7 +14,7 @@
                         <th:block th:switch="${project.status}">
                             <span th:case="Active" class="tag active">Active</span>
                             <span th:case="Archived" class="tag archived">Archived</span>
-                            <span th:case="Not Started'" class="tag">Not Started</span>
+                            <span th:case="'Not Started'" class="tag archived">Not Started</span>
                         </th:block>
                     </div>
                     <div class="roles-collaborators">
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="actions">
-                        <a class="button" href="edit_project.html">Edit Project</a>
+                        <a class="button" th:href="@{'/projects/' + ${project.id} + '/edit'}">Edit Project</a>
                         <a class="button" href="project_collaborators.html">Edit Collaborators</a>
                     </div>
                 </div>

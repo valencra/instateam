@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.LinkedHashMap;
@@ -97,6 +98,36 @@ public class ProjectController {
     projectService.save(project);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully added!", FlashMessage.Status.SUCCESS));
     return "redirect:/";
+  }
+
+  // Edit existing project form
+  @GetMapping("/projects/{id}/edit")
+  public String editProjectForm(@PathVariable Long id, Model model) {
+    // If no project object exists, get project with given id
+    if(!model.containsAttribute("project")) {
+      model.addAttribute("project", projectService.findById(id));
+    }
+    model.addAttribute("statuses", ProjectStatus.values());
+    model.addAttribute("roles", roleService.findAll());
+    model.addAttribute("action", String.format("/projects/%d", id));
+    model.addAttribute("method","put");
+    model.addAttribute("heading","Edit Project");
+    model.addAttribute("submit","Update");
+    return "project/form";
+  }
+
+  // Edit existing project
+  @PutMapping(value = "/projects/{id}")
+  public String editExistingProject(@Valid Project project, BindingResult result, RedirectAttributes redirectAttributes) {
+    // If result has errors, add results and current project object to the model, then redirect to form
+    if(result.hasErrors()) {
+      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
+      redirectAttributes.addFlashAttribute("project", project);
+      return "redirect:/projects/{id}/edit";
+    }
+    projectService.save(project);
+    redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully edited!", FlashMessage.Status.SUCCESS));
+    return "redirect:/projects/{id}";
   }
 
 }
