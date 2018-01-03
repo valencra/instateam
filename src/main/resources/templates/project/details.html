@@ -19,21 +19,9 @@
                     </div>
                     <div class="roles-collaborators">
                         <h3>Roles &amp; Collaborators</h3>
-                        <div class="list-item">
-                            <span class="primary">Developer</span>
-                            <span class="secondary">Michael Pemulis</span>
-                        </div>
-                        <div class="list-item">
-                            <span class="primary">Designer</span>
-                            <span class="secondary">Don Gately</span>
-                        </div>
-                        <div class="list-item">
-                            <span class="primary">QA</span>
-                                <span class="secondary">Joelle Van Dyne</span>
-                            </div>
-                        <div class="list-item">
-                            <span class="primary">DevOps</span>
-                            <span class="secondary">[Unassigned]</span>
+                        <div class="list-item" th:each="roleDesignation : ${roleDesignations}">
+                            <span class="primary" th:text="${roleDesignation.key.name}">Role</span>
+                            <span class="secondary" th:text="${roleDesignation.value.name}">Collaborator</span>
                         </div>
                     </div>
                     <div class="actions">

@@ -1,6 +1,8 @@
 package com.valencra.instateam.web.controller;
 
+import com.valencra.instateam.model.Collaborator;
 import com.valencra.instateam.model.Project;
+import com.valencra.instateam.model.Role;
 import com.valencra.instateam.service.CollaboratorService;
 import com.valencra.instateam.service.ProjectService;
 import com.valencra.instateam.service.RoleService;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 
 @Controller
@@ -41,8 +45,28 @@ public class ProjectController {
   @GetMapping("/projects/{id}")
   public String getProjectById(@PathVariable Long id, Model model) {
     Project project = projectService.findById(id);
+    Map<Role, Collaborator> roleDesignations = getRoleDesignations(project);
     model.addAttribute("project", project);
+    model.addAttribute("roleDesignations", roleDesignations);
     return "project/details";
+  }
+
+  private Map<Role, Collaborator> getRoleDesignations(Project project) {
+    List<Role> roles = project.getRoles();
+    List<Collaborator> collaborators = project.getCollaborators();
+    Map<Role, Collaborator> roleDesignations = new LinkedHashMap<>();
+    roles.forEach(
+        role -> roleDesignations.put(role, collaborators.stream()
+            .filter(collaborator -> collaborator.getRole().getId().equals(role.getId()))
+            .findFirst()
+            .orElseGet(() -> {
+              Collaborator collaborator = new Collaborator();
+              collaborator.setName("Not Designated");
+              return collaborator;
+            })
+        )
+    );
+    return roleDesignations;
   }
 
   // Add new project form
