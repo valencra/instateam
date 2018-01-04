@@ -8,6 +8,7 @@ import com.valencra.instateam.service.ProjectService;
 import com.valencra.instateam.service.RoleService;
 import com.valencra.instateam.web.FlashMessage;
 import com.valencra.instateam.web.ProjectStatus;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -137,5 +138,21 @@ public class ProjectController {
     projectService.delete(project);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully deleted", FlashMessage.Status.SUCCESS));
     return "redirect:/";
+  }
+
+  @GetMapping("/projects/{id}/edit-collaborators")
+  public String editCollaborators(@PathVariable Long id, Model model) {
+    Project project = projectService.findById(id);
+    model.addAttribute("project", project);
+    model.addAttribute("action", String.format("/projects/%d/collaborators", id));
+    model.addAttribute("method","put");
+    return "project/collaborator_form";
+  }
+
+  @PutMapping(value = "/projects/{id}/collaborators")
+  public String designateCollaborators(@Valid Project project, RedirectAttributes redirectAttributes){
+    projectService.save(project);
+    redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project collaborators successfully assigned", FlashMessage.Status.SUCCESS));
+    return "redirect:/projects/{id}";
   }
 }
