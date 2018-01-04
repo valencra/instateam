@@ -27,6 +27,9 @@
                     <div class="actions">
                         <a class="button" th:href="@{'/projects/' + ${project.id} + '/edit'}">Edit Project</a>
                         <a class="button" href="project_collaborators.html">Edit Collaborators</a>
+                        <form th:action="@{'/projects/' + ${project.id} + '/delete'}" method="post">
+                            <button class="button" type="submit">Delete Project</button>
+                        </form>
                         <a th:href="@{/}" class="button button-secondary">Cancel</a>
                     </div>
                 </div>
