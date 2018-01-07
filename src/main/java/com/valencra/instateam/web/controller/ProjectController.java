@@ -132,6 +132,7 @@ public class ProjectController {
     return "redirect:/projects/{id}";
   }
 
+  // Delete existing project
   @DeleteMapping(value = "/projects/{id}/delete")
   public String deleteExistingProject(@PathVariable Long id, RedirectAttributes redirectAttributes) {
     Project project = projectService.findById(id);
@@ -140,8 +141,9 @@ public class ProjectController {
     return "redirect:/";
   }
 
+  // Edit project collaborators
   @GetMapping("/projects/{id}/collaborators/edit")
-  public String editCollaborators(@PathVariable Long id, Model model) {
+  public String editCollaboratorsForm(@PathVariable Long id, Model model) {
     Project project = projectService.findById(id);
     model.addAttribute("project", project);
     model.addAttribute("action", String.format("/projects/%d/collaborators", id));
@@ -150,12 +152,10 @@ public class ProjectController {
   }
 
   @PutMapping(value = "/projects/{id}/collaborators")
-  public String designateCollaborators(@PathVariable Long id, Project project, RedirectAttributes redirectAttributes){
-    Project savedProject = projectService.findById(id);
-    savedProject.setCollaborators(
-        project.getCollaborators()
-    );
-    projectService.save(savedProject);
+  public String editCollaborators(@PathVariable Long id, Project returnedProject, RedirectAttributes redirectAttributes){
+    Project projectToSave = projectService.findById(id);
+    projectToSave.setCollaborators(returnedProject.getCollaborators());
+    projectService.save(projectToSave);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project collaborators successfully assigned", FlashMessage.Status.SUCCESS));
     return "redirect:/projects/{id}";
   }
