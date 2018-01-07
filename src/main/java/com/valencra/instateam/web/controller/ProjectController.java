@@ -140,7 +140,7 @@ public class ProjectController {
     return "redirect:/";
   }
 
-  @GetMapping("/projects/{id}/edit-collaborators")
+  @GetMapping("/projects/{id}/collaborators/edit")
   public String editCollaborators(@PathVariable Long id, Model model) {
     Project project = projectService.findById(id);
     model.addAttribute("project", project);
@@ -150,8 +150,12 @@ public class ProjectController {
   }
 
   @PutMapping(value = "/projects/{id}/collaborators")
-  public String designateCollaborators(@Valid Project project, RedirectAttributes redirectAttributes){
-    projectService.save(project);
+  public String designateCollaborators(@PathVariable Long id, Project project, RedirectAttributes redirectAttributes){
+    Project savedProject = projectService.findById(id);
+    savedProject.setCollaborators(
+        project.getCollaborators()
+    );
+    projectService.save(savedProject);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project collaborators successfully assigned", FlashMessage.Status.SUCCESS));
     return "redirect:/projects/{id}";
   }
